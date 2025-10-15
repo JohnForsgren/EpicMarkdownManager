@@ -1,0 +1,122 @@
+<Window x:Class="EpicMarkdownManager.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:EpicMarkdownManager"
+        Title="Epic Markdown Manager"
+        Height="800" Width="1400"
+        Background="#1e1e1e"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Menu Bar -->
+        <Menu Grid.Row="0" Background="#2d2d30" Foreground="#d4d4d4">
+            <MenuItem Header="_File">
+                <MenuItem Header="_Open Folder" Click="OpenFolder_Click" InputGestureText="Ctrl+O"/>
+                <MenuItem Header="_New File" Click="NewFile_Click" InputGestureText="Ctrl+N"/>
+                <MenuItem Header="_Save" Click="Save_Click" InputGestureText="Ctrl+S"/>
+                <MenuItem Header="Save _As..." Click="SaveAs_Click" InputGestureText="Ctrl+Shift+S"/>
+                <Separator/>
+                <MenuItem Header="_Exit" Click="Exit_Click" InputGestureText="Alt+F4"/>
+            </MenuItem>
+            <MenuItem Header="_Edit">
+                <MenuItem Header="_Bold" Click="Bold_Click" InputGestureText="Ctrl+B"/>
+                <MenuItem Header="_Italic" Click="Italic_Click" InputGestureText="Ctrl+I"/>
+                <Separator/>
+                <MenuItem Header="_Paste Image" Click="PasteImage_Click" InputGestureText="Ctrl+V"/>
+            </MenuItem>
+            <MenuItem Header="_View">
+                <MenuItem Name="TogglePreviewMenuItem" Header="Show _Preview" IsCheckable="True" IsChecked="True" Click="TogglePreview_Click"/>
+                <MenuItem Name="ToggleFileExplorerMenuItem" Header="Show _File Explorer" IsCheckable="True" IsChecked="True" Click="ToggleFileExplorer_Click"/>
+                <Separator/>
+                <MenuItem Header="_Refresh" Click="Refresh_Click" InputGestureText="F5"/>
+            </MenuItem>
+            <MenuItem Header="_Tools">
+                <MenuItem Header="Start _Pomodoro Timer" Click="StartPomodoroTimer_Click"/>
+                <MenuItem Header="_Settings" Click="Settings_Click"/>
+            </MenuItem>
+        </Menu>
+
+        <!-- Toolbar -->
+        <ToolBar Grid.Row="1" Background="#2d2d30" Foreground="#d4d4d4">
+            <Button Click="NewFile_Click" ToolTip="New File" Style="{StaticResource DarkButton}">
+                <TextBlock>📄 New</TextBlock>
+            </Button>
+            <Button Click="Save_Click" ToolTip="Save" Style="{StaticResource DarkButton}">
+                <TextBlock>💾 Save</TextBlock>
+            </Button>
+            <Separator/>
+            <Button Click="Bold_Click" ToolTip="Bold (Ctrl+B)" Style="{StaticResource DarkButton}">
+                <TextBlock FontWeight="Bold">B</TextBlock>
+            </Button>
+            <Button Click="Italic_Click" ToolTip="Italic (Ctrl+I)" Style="{StaticResource DarkButton}">
+                <TextBlock FontStyle="Italic">I</TextBlock>
+            </Button>
+            <Separator/>
+            <Button Click="InsertH1_Click" ToolTip="Heading 1" Style="{StaticResource DarkButton}">
+                <TextBlock>H1</TextBlock>
+            </Button>
+            <Button Click="InsertH2_Click" ToolTip="Heading 2" Style="{StaticResource DarkButton}">
+                <TextBlock>H2</TextBlock>
+            </Button>
+            <Button Click="InsertH3_Click" ToolTip="Heading 3" Style="{StaticResource DarkButton}">
+                <TextBlock>H3</TextBlock>
+            </Button>
+            <Separator/>
+            <Button Click="InsertList_Click" ToolTip="Bullet List" Style="{StaticResource DarkButton}">
+                <TextBlock>• List</TextBlock>
+            </Button>
+            <Button Click="InsertLink_Click" ToolTip="Insert Link" Style="{StaticResource DarkButton}">
+                <TextBlock>🔗 Link</TextBlock>
+            </Button>
+            <Separator/>
+            <Button Click="StartPomodoroTimer_Click" ToolTip="Start Pomodoro Timer" Style="{StaticResource DarkButton}">
+                <TextBlock>⏲ Timer</TextBlock>
+            </Button>
+        </ToolBar>
+
+        <!-- Main Content -->
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250" MinWidth="150"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- File Explorer -->
+            <local:FileExplorer x:Name="fileExplorer"
+                               Grid.Column="0"
+                               Visibility="Visible"/>
+
+            <!-- Splitter -->
+            <GridSplitter Grid.Column="1"
+                         Width="3"
+                         HorizontalAlignment="Stretch"
+                         VerticalAlignment="Stretch"
+                         Background="#3e3e42"/>
+
+            <!-- Editor Area -->
+            <local:RichMarkdownEditor x:Name="markdownEditor"
+                                     Grid.Column="2"/>
+        </Grid>
+
+        <!-- Status Bar -->
+        <StatusBar Grid.Row="3" Background="#007acc" Foreground="#ffffff">
+            <StatusBarItem>
+                <TextBlock Name="StatusText">Ready</TextBlock>
+            </StatusBarItem>
+            <StatusBarItem HorizontalAlignment="Right">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Name="FilePathText" Margin="0,0,20,0"/>
+                    <TextBlock Name="ModifiedIndicator" FontWeight="Bold"/>
+                </StackPanel>
+            </StatusBarItem>
+        </StatusBar>
+    </Grid>
+</Window>

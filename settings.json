@@ -1,0 +1,39 @@
+{
+  "theme": {
+    "backgroundColor": "#1e1e1e",
+    "textColor": "#d4d4d4",
+    "selectionBackground": "#264f78",
+    "lineNumberColor": "#858585",
+    "currentLineBackground": "#2a2a2a"
+  },
+  "fonts": {
+    "fontFamily": "Consolas",
+    "regularTextSize": 12,
+    "heading3Size": 16,
+    "heading2Size": 18,
+    "heading1Size": 26
+  },
+  "colors": {
+    "regularText": "#d4d4d4",
+    "heading1": "#569cd6",
+    "heading2": "#4ec9b0",
+    "heading3": "#dcdcaa",
+    "italic": "#ffeb3b",
+    "bold": "#f44336",
+    "link": "#4fc3f7",
+    "bulletPoint": "#808080",
+    "codeBlock": "#2d2d30"
+  },
+  "editor": {
+    "wordWrap": true,
+    "showLineNumbers": true,
+    "tabSize": 4,
+    "autoIndent": true,
+    "highlightCurrentLine": true
+  },
+  "images": {
+    "imageFolder": "EpicMarkdownManager_Images",
+    "defaultWidth": 400,
+    "enableResize": true
+  }
+}
